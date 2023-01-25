@@ -20,13 +20,27 @@ Input: s = "(]"
 Output: false
 """
 
-for i in range(len('()')):
-    print(i)
-
 class Solution:
     def isValid(self, s: str) -> bool:
-        dict_paren = {'(':')', '[':']', '{':'}'}
-        
-
+        paren_dict = {')':'(', ']':'[', '}':'{'}
+        stack = []
         for char_ in s:
-            dict_paren[char_]
+            if char_ not in ']})':
+                stack.append(char_)
+            elif stack:
+                x = stack.pop()
+                if x != paren_dict[char_]:
+                    return False
+            else:
+                return False
+        return True if len(stack) == 0 else False 
+
+checker = Solution()
+
+input1 = "()"
+input2 = "()[]{}"
+input3 = "(]"
+
+checker.isValid(input1)
+checker.isValid(input2)
+checker.isValid(input3)

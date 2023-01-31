@@ -17,26 +17,26 @@ In short, without [:], we're creating a new list object, which is against what t
 """
 
 from typing import List 
-class Solution:
+
+# Solution 1
+class Solution1:
     def removeDuplicates(self, nums: List[int]) -> int:
         nums[:] = sorted(set(nums))
         return len(nums)
 
-nums_ = [1,1,2]
-checker = Solution()
-checker.removeDuplicates(nums_)
+# Solution 2
+class Solution2:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        pointer_ = 0
+        for i in range(len(nums)-1):
+            if nums[pointer_] == nums[pointer_+1]:
+                nums.pop(pointer_)
+            else:
+                pointer_ += 1
+        return len(nums)
 
+checker1 = Solution1()
+checker2 = Solution2()
 
-def removeDuplicates2(nums: List[int]) -> int:
-    counter_ = 0
-    pointer = 0
-    for i in range(len(nums)-1):
-        print(i, counter_, pointer)
-        if nums[pointer] == nums[pointer+1]:
-            nums.pop(pointer)
-            counter_ += 1
-        else:
-            pointer += 1
-    return nums
-
-removeDuplicates2([1,1,2])
+checker1.removeDuplicates([1,1,2,3,4,5,6,6])
+checker2.removeDuplicates([1,1,2,3,4,5,6,6])

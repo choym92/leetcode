@@ -1,6 +1,6 @@
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
-        return max([len(word) for word in s.split(" ")])
+        return len([word.strip() for word in s1.split(" ") if word.strip()][-1])
 
 
 checker = Solution()
